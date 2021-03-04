@@ -6,5 +6,5 @@ export default function() {
         <div>
             <h2>Portfolio Item go here..</h2>
         </div>
-    )
+    );
 }

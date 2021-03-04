@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import portfolioItem from './portfolio-item';
 
-import PortfolioItem from "./portfolio-item";
+import PortfolioItem from './portfolio-item';
+
+
 
 export default class PortfolioContainer extends Component {
     // State
@@ -10,11 +11,13 @@ export default class PortfolioContainer extends Component {
     render() {
         return (
             // JSX
+            // text difference checker
             <div>
                 <h2>Portfolio Component Items</h2>
 
-                <portfolioItem />
+                <PortfolioItem />
+                <h2>this is a test </h2>
             </div>
-        )
+        );
     }
 }
