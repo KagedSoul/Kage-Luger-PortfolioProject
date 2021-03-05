@@ -14,18 +14,16 @@ export default class PortfolioContainer extends Component {
     PortfolioItems() {
         const data = ["event1", "eventb", "eventc"];
         return data.map(item => {
-            return <PortfolioItem />;
-        })
-    }
-    
-    PortfolioItems2() {
-        const data = ["event1", "eventb", "eventc"];
-        return data.map(item => {
-            return <h2>{item}</h2>;
+            return <PortfolioItem title={item} url={"google.com"}/>;
         })
     }
 
-
+    // PortfolioItems2() {
+    //     const data = ["event1", "eventb", "eventc"];
+    //     return data.map(item => {
+    //         return <h2>{item}</h2>;
+    //     })
+    // }
 
     render() {
         return (
@@ -35,7 +33,7 @@ export default class PortfolioContainer extends Component {
                 <h2>Portfolio Component Items</h2>
 
                 {this.PortfolioItems()}
-                {this.PortfolioItems2()}
+                {/* {this.PortfolioItems2()} */}
             </div>
         );
     }
