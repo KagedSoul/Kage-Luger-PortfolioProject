@@ -11,6 +11,22 @@ export default class PortfolioContainer extends Component {
         console.log("portfolio Container Renderd")
     }
 
+    PortfolioItems() {
+        const data = ["event1", "eventb", "eventc"];
+        return data.map(item => {
+            return <PortfolioItem />;
+        })
+    }
+    
+    PortfolioItems2() {
+        const data = ["event1", "eventb", "eventc"];
+        return data.map(item => {
+            return <h2>{item}</h2>;
+        })
+    }
+
+
+
     render() {
         return (
             // JSX
@@ -18,8 +34,8 @@ export default class PortfolioContainer extends Component {
             <div>
                 <h2>Portfolio Component Items</h2>
 
-                <PortfolioItem />
-                <h2>this is a test Extra</h2>
+                {this.PortfolioItems()}
+                {this.PortfolioItems2()}
             </div>
         );
     }
