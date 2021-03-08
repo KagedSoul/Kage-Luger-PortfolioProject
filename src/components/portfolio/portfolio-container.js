@@ -1,56 +1,54 @@
 import React, { Component } from 'react';
 
 import PortfolioItem from './portfolio-item';
-export default class PortfolioContainer extends Component {
-    // State
-    // Lifecycle hooks
-    // Dynamic Data and react to changes = Class base = little more complex
 
+export default class PortfolioContainer extends Component {
     constructor() {
         super();
 
         this.state = {
             pageTitle: "Welcome To my Portfolio",
             data: [
-                {title: "event1"},
-                {title: "eventb"},
-                {title: "eventc"}
+                {title: "event1", category: "eCommerce"},
+                {title: "eventb", category: "schedualing"},
+                {title: "eventc", category: "eCommerce"},
+                {title: "eventD", category: "Enterprise"}
             ]
         };
-        this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this);
+
+        this.handleFilter = this.handleFilter.bind(this);
     }
 
-    handlePageTitleUpdate() {
+    handleFilter(filter) {
         this.setState({
-            pageTitle: "Something Else"
+            data: this.state.data.filter(item => {
+                return item.category === filter;
+            })
         });
     }
 
-    PortfolioItems() {
-        
+    portfolioItems() {
         return this.state.data.map(item => {
             return <PortfolioItem title={item.title} />
-        })
+        });
     }
-
-    // PortfolioItems2() {
-    //     const data = ["event1", "eventb", "eventc"];
-    //     return data.map(item => {
-    //         return <h2>{item}</h2>;
-    //     })
-    // }
 
     render() {
         return (
             // JSX
-            // text difference checker
             <div>
                 <h2>{this.state.pageTitle}</h2>
 
-                {this.PortfolioItems()}
-                {/* {this.PortfolioItems2()} */}
-                <hr/>
-                <button onClick={this.handlePageTitleUpdate}>Change Title</button>
+                <button onClick={() => this.handleFilter('eCommerce')}>eCommerce</button>
+                <button onClick={() => this.handleFilter('schedualing')}>
+                    schedualing
+                </button>
+                <button onClick={() => this.handleFilter("Enterprise")}>
+                  Enterprise
+                </button>
+
+
+                {this.portfolioItems()}
             </div>
         );
     }
