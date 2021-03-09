@@ -10,15 +10,8 @@ export default class PortfolioContainer extends Component {
         this.state = {
             pageTitle: "Welcome To my Portfolio",
             isLoading: false,
-            data: [
-                {title: "event1", category: "eCommerce", slug: "quip"},
-                {title: "eventb", category: "schedualing", slug: "eventbrite"},
-                {title: "eventc", category: "eCommerce", slug: "ministry-safe"},
-                {title: "eventD", category: "Enterprise", slug: "swingaway"}
-            ]
+            data: []
         };
-
-        this.getPortfolioItems = this.getPortfolioItems.bind(this);
 
         this.handleFilter = this.handleFilter.bind(this);
     }
@@ -33,7 +26,8 @@ export default class PortfolioContainer extends Component {
 
     portfolioItems() {
         return this.state.data.map(item => {
-            return <PortfolioItem title={item.title} url={'somting.com'} slug={item.slug} />
+            console.log("itemdata", item);
+            return <PortfolioItem title={item.name} url={item.url} slug={item.id} />
         });
     }
 
@@ -43,6 +37,9 @@ export default class PortfolioContainer extends Component {
       .then(response => {
         // handle success
         console.log("responce Data", response);
+        this.setState({
+            data: response.data.portfolio_items
+        })
       })
       .catch(error => {
         // handle error
@@ -53,12 +50,15 @@ export default class PortfolioContainer extends Component {
         };
     }
 
+    componentDidMount() {
+        this.getPortfolioItems();
+    }
+
     render() {
         if(this.state.isLoading) {
             return<div>Loading...</div>;
         }
 
-        this.getPortfolioItems();
         
         return (
             // JSX
