@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import PortfolioItem from './portfolio-item';
 
@@ -17,6 +18,8 @@ export default class PortfolioContainer extends Component {
             ]
         };
 
+        this.getPortfolioItems = this.getPortfolioItems.bind(this);
+
         this.handleFilter = this.handleFilter.bind(this);
     }
 
@@ -34,10 +37,29 @@ export default class PortfolioContainer extends Component {
         });
     }
 
+    getPortfolioItems() {
+        // Make a request for a user with a given ID
+      axios.get('https://kageluger.devcamp.space/portfolio/portfolio_items')
+      .then(response => {
+        // handle success
+        console.log("responce Data", response);
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      }) 
+      .then = () => {
+        // always executed
+        };
+    }
+
     render() {
         if(this.state.isLoading) {
             return<div>Loading...</div>;
         }
+
+        this.getPortfolioItems();
+        
         return (
             // JSX
             <div>
