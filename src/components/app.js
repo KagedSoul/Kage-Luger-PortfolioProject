@@ -19,6 +19,8 @@ export default class App extends Component {
       <div className='app'>
         <Router>
           <div>
+          <h1>Kage Luger Portfolio</h1>
+          <div>{moment().format('MMMM Do YYYY, h:mm:ss a')}</div>
             <NavigationContainer />
 
             <Switch>
@@ -31,10 +33,6 @@ export default class App extends Component {
             
           </div>
         </Router>
-
-        <h1>Kage Luger Portfolio</h1>
-        <div>{moment().format('MMMM Do YYYY, h:mm:ss a')}</div>
-        <PortfolioContainer />
       </div>
     );
   }
