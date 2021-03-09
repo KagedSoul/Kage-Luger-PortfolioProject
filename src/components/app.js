@@ -12,6 +12,8 @@ import Home from './pages/home';
 import About from './pages/about';
 import Contact from './pages/contact-me';
 import Blog from './pages/blog';
+import PortfolioDetail from './portfolio/portfolio-detail';
+import NoMatch from './pages/no-match';
 
 export default class App extends Component {
   render() {
@@ -28,11 +30,15 @@ export default class App extends Component {
               <Route path='/about-me' component={About}></Route>
               <Route path='/contact-me' component={Contact}></Route>
               <Route path='/blog' component={Blog}></Route>
+              <Route exact path='/portfolio/:slug' component={PortfolioDetail}></Route>
+              {/* A Route Catch all, Goes at the end */}
+              <Route component={NoMatch} /> 
             </Switch>
           
             
           </div>
         </Router>
+
       </div>
     );
   }
