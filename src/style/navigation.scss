@@ -21,7 +21,7 @@ padding: 30px;
     a {
         color: $grey;
         text-decoration: none;
-        &hover {
+        &:hover {
             color: black;
         }
     }
