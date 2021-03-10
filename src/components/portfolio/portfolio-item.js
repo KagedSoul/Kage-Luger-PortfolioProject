@@ -3,12 +3,22 @@ import { Link } from 'react-router-dom';
 
 export default function(props) {
     //Functional Componet = simple, simply rendering data given to it.
+
+         //Data that we'll need:
+        // - background Image : thumb_image_url
+        // - logo : logo_url
+        // - description : description
+        // - id : id
+        // position
+
+        const { id, description, thumb_image_url, logo} = props.item;
+
     return (
         <div>
-            <h2>{props.title}</h2>
-            <h4>{props.url}</h4>
-
-            <Link to={`/portfolio/${props.slug}`}>Link</Link>
+            <img src={thumb_image_url} />
+            <img src={logo} />
+            <div>{description}</div>
+            <Link to={`/portfolio/${props.id}`}>Link</Link>
         </div>
     );
 }
