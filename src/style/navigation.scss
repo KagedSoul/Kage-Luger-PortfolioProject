@@ -23,12 +23,11 @@ padding: 30px;
         text-decoration: none;
         &:hover {
             color: black;
+            border-bottom: 1px solid black;
         }
     }
 
-    &:hover {
-        border-bottom: 1px solid black;
-    }
+
 
     .active-nav-link {
         border-bottom: 1px solid black;
