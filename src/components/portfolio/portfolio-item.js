@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PortfolioContainer from './portfolio-container';
 
 export default function(props) {
     //Functional Componet = simple, simply rendering data given to it.
@@ -12,10 +13,15 @@ export default function(props) {
         // position
 
         const { id, description, thumb_image_url, logo} = props.item;
-
     return (
         <div className="portfolio-item-wrapper">
-            <img src={thumb_image_url} />
+            <div 
+                className="portfolio-img-background"
+                style={{
+                    backgroundImage: "url(" + thumb_image_url + ")"
+                }}
+            />
+
             <img src={logo} />
             <div>{description}</div>
             <Link to={`/portfolio/${props.id}`}>Link</Link>
