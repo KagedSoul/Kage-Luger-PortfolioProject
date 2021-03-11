@@ -22,7 +22,7 @@ export default function(props) {
                 }}
             />
 
-            <div className="image-text-wrapper">
+            <div className="img-text-wrapper">
                 <div className="logo-wrapper">
                     <img src={logo_url} />
                 </div>
