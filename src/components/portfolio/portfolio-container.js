@@ -25,7 +25,6 @@ export default class PortfolioContainer extends Component {
     }
 
     portfolioItems() {
-   
         return this.state.data.map(item => {
             return (
             <PortfolioItem 
