@@ -18,9 +18,9 @@ export default class PortfolioManager extends Component {
     this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
   }
   handleSuccessfulFormSubmission(portfolioItem) {
-    //TODO
-    //update portfoilioItemDatabase state
-    //and add thr portfolioOtems to thr list
+    this.setState({
+      portfolioItems: [portfolioItem].concat(this.state.portfolioItems),
+    });
   }
 
   handleFormSubmissionError(error) {
@@ -29,10 +29,14 @@ export default class PortfolioManager extends Component {
 
   getPortfolioItems() {
     // Make a request for a user with a given ID
+    // ? additional key for API perameters
     axios
-      .get("https://kageluger.devcamp.space/portfolio/portfolio_items", {
-        withCredentials: true,
-      })
+      .get(
+        "https://kageluger.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc",
+        {
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         // handle success
         this.setState({
