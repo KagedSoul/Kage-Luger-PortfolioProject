@@ -22,14 +22,14 @@ export default class PortfolioForm extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.componetConfig = this.componetConfig.bind(this);
+    this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
   }
 
-  componetConfig() {
+  componentConfig() {
     return {
       iconFiletypes: [".jpg", ".png"],
-      showFileTypeIcon: true,
+      showFiletypeIcon: true,
       postUrl: "https://httpbin.org/post",
     };
   }
@@ -130,7 +130,7 @@ export default class PortfolioForm extends Component {
 
           <div className="image-uploaders">
             <DropzoneComponent
-              config={this.componetConfig()}
+              config={this.componentConfig()}
               djsConfig={this.djsConfig()}
             ></DropzoneComponent>
           </div>

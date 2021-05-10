@@ -45,10 +45,8 @@ export default class PortfolioManager extends Component {
       })
       .catch((error) => {
         // handle error
-        console.log(error);
-      }).then = () => {
-      // always executed
-    };
+        console.log("error in getPortfolioItems", error);
+      });
   }
 
   componentDidMount() {
