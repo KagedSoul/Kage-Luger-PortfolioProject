@@ -33,9 +33,14 @@
     font-size: 1.1em;
     margin-bottom: 21px;
 
-    &:focuse {
+    &:focus {
       outline: none;
       border-bottom: 1px solid $dark-teal;
     }
   }
+}
+
+@mixin base-grid() {
+  display: grid;
+  grid-gap: 21px;
 }

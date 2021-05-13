@@ -131,7 +131,7 @@ export default class PortfolioForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="portfolio-form-wrapper">
-        <div className="">
+        <div className="two-columns">
           <input
             type="text"
             name="name"
@@ -149,7 +149,7 @@ export default class PortfolioForm extends Component {
           />
         </div>
 
-        <div className="">
+        <div className="two-columns">
           <input
             type="text"
             name="position"
@@ -169,7 +169,7 @@ export default class PortfolioForm extends Component {
             <option value="Enterprise">Enterprise</option>
           </select>
         </div>
-        <div>
+        <div className="one-column">
           <textarea
             type="text"
             name="description"
@@ -179,30 +179,38 @@ export default class PortfolioForm extends Component {
           />
         </div>
 
-        <div className="image-uploaders">
+        <div className="image-uploaders three-columns">
           <DropzoneComponent
             ref={this.thumbRef}
             config={this.componentConfig()}
             djsConfig={this.djsConfig()}
             eventHandlers={this.handleThumbDrop()}
-          ></DropzoneComponent>
+          >
+            <div className="dz-message">Thumbnail Image</div>
+          </DropzoneComponent>
 
           <DropzoneComponent
             ref={this.bannerRef}
             config={this.componentConfig()}
             djsConfig={this.djsConfig()}
             eventHandlers={this.handleBannerDrop()}
-          ></DropzoneComponent>
+          >
+            <div className="dz-message">Banner Image</div>
+          </DropzoneComponent>
 
           <DropzoneComponent
             ref={this.logoRef}
             config={this.componentConfig()}
             djsConfig={this.djsConfig()}
             eventHandlers={this.handleLogoDrop()}
-          ></DropzoneComponent>
+          >
+            <div className="dz-message">Logo Image</div>
+          </DropzoneComponent>
         </div>
         <div>
-          <button type="submit">Save</button>
+          <button className="btn" type="submit">
+            Save
+          </button>
         </div>
       </form>
     );
