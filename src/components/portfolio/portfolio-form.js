@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DropzoneComponent from "react-dropzone-component";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // mainly import styles
 import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
@@ -67,9 +68,9 @@ export default class PortfolioForm extends Component {
         editMode: true,
         apiUrl: `https://kageluger.devcamp.space/portfolio/portfolio_items/${id}`,
         apiAction: "patch",
-        thumb_image: thumb_image_url || "",
-        banner_image: banner_image_url || "",
-        logo: logo_url || "",
+        thumb_image_url: thumb_image_url || "",
+        banner_image_url: banner_image_url || "",
+        logo_url: logo_url || "",
       });
     }
   }
@@ -227,12 +228,12 @@ export default class PortfolioForm extends Component {
         </div>
 
         <div className="image-uploaders three-columns">
-          {this.state.thumb_image && this.state.editMode ? (
+          {this.state._url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
-              <img src={this.state.thumb_image}></img>
+              <img src={this.state._url}></img>
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("thumb_image")}>
-                  Remove Image File
+                <a onClick={() => this.deleteImage("_url")}>
+                  <FontAwesomeIcon icon="folder-minus" />
                 </a>
               </div>
             </div>
@@ -247,12 +248,13 @@ export default class PortfolioForm extends Component {
             </DropzoneComponent>
           )}
 
-          {this.state.banner_image && this.state.editMode ? (
+          {this.state.banner_image_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
-              <img src={this.state.banner_image}></img>
+              <img src={this.state.banner_image_url}></img>
+
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("banner_image")}>
-                  Remove Image File
+                <a onClick={() => this.deleteImage("banner_image_url")}>
+                  <FontAwesomeIcon icon="folder-minus" />
                 </a>
               </div>
             </div>
@@ -267,12 +269,12 @@ export default class PortfolioForm extends Component {
             </DropzoneComponent>
           )}
 
-          {this.state.logo && this.state.editMode ? (
+          {this.state.logo_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
-              <img src={this.state.logo}></img>
+              <img src={this.state.logo_url}></img>
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("logo")}>
-                  Remove Image File
+                <a onClick={() => this.deleteImage("logo_url")}>
+                  <FontAwesomeIcon icon="folder-minus" />
                 </a>
               </div>
             </div>
