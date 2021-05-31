@@ -39,7 +39,19 @@ export default class PortfolioForm extends Component {
   }
 
   deleteImage(imageType) {
-    console.log("deleteimage", imageType);
+    axios
+      .delete(
+        `https://api.devcamp.space/portfolio/delete-portfolio-image/${this.state.id}?image_type=${imageType}`,
+        { withCredentials: true }
+      )
+      .then((response) => {
+        this.setState({
+          [`${imageType}_url`]: "",
+        });
+      })
+      .catch((error) => {
+        console.log("errorDeleteImage", error);
+      });
   }
 
   componentDidUpdate() {
@@ -228,11 +240,11 @@ export default class PortfolioForm extends Component {
         </div>
 
         <div className="image-uploaders three-columns">
-          {this.state._url && this.state.editMode ? (
+          {this.state.thumb_image_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
-              <img src={this.state._url}></img>
+              <img src={this.state.thumb_image_url}></img>
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("_url")}>
+                <a onClick={() => this.deleteImage("thumb_image")}>
                   <FontAwesomeIcon icon="folder-minus" />
                 </a>
               </div>
@@ -253,7 +265,7 @@ export default class PortfolioForm extends Component {
               <img src={this.state.banner_image_url}></img>
 
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("banner_image_url")}>
+                <a onClick={() => this.deleteImage("banner_image")}>
                   <FontAwesomeIcon icon="folder-minus" />
                 </a>
               </div>
@@ -273,7 +285,7 @@ export default class PortfolioForm extends Component {
             <div className="portfolio-manager-image-wrapper">
               <img src={this.state.logo_url}></img>
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("logo_url")}>
+                <a onClick={() => this.deleteImage("logo")}>
                   <FontAwesomeIcon icon="folder-minus" />
                 </a>
               </div>
