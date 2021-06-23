@@ -33,7 +33,9 @@ export default class BlogForm extends Component {
         }
       )
       .then((response) => {
-        this.props.handleSuccessfulFormSubmission(response.data.porfolio_blog);
+        this.props.handleSuccessfullFormSubmission(
+          response.data.portfolio_blog
+        );
         this.setState({
           title: "",
           blog_status: "",
