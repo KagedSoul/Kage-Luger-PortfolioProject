@@ -48,6 +48,7 @@ class Blog extends Component {
   }
 
   onScroll() {
+    console.log("scrolling");
     if (
       this.state.isLoading ||
       this.state.blogItems.length === this.state.totalCount
@@ -83,6 +84,28 @@ class Blog extends Component {
       })
       .catch((error) => {
         console.log(error, "getblogitmes");
+
+        // Addition for internet connection Error
+        // Start
+        if (error == "Error: Network Error") {
+          console.log("Network Test");
+          this.setState({
+            totalCount: -1,
+            blogItems: [
+              {
+                id: -1,
+                content: "Could not connect to the server",
+                title: "Error: Network Error",
+                data: {
+                  portfolio_blogs: 2,
+                },
+              },
+            ],
+            isLoading: false,
+          });
+          console.log(this.state.totalCount), "totalCount";
+        }
+        // End
       });
   }
 

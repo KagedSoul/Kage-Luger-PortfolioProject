@@ -7,6 +7,12 @@
     flex-direction: column;
     width: 800px;
 
+    // extra Style
+    div {
+      padding-bottom: 10px;
+    }
+    // extra Style
+
     a {
       text-decoration: none;
       color: $teal;

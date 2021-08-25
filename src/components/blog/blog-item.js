@@ -11,6 +11,7 @@ const BlogItem = (props) => {
     title,
     featured_image_url,
   } = props.blogItem;
+
   return (
     <div>
       <Link to={`/b/${id}`}>
@@ -20,4 +21,7 @@ const BlogItem = (props) => {
     </div>
   );
 };
+
+console.log(BlogItem, "Blog Item jsGenerator");
+
 export default BlogItem;
