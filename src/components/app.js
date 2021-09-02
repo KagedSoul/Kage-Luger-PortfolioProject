@@ -9,6 +9,7 @@ import {
   faEdit,
   faFolderMinus,
   faSpinner,
+  faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import PortfolioContainer from "./portfolio/portfolio-container";
@@ -22,8 +23,7 @@ import PortfolioManager from "./pages/portfolio-mangager";
 import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
-
-library.add(faTrash, faSignOutAlt, faEdit, faFolderMinus, faSpinner);
+library.add(faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle);
 
 export default class App extends Component {
   constructor(props) {
@@ -32,6 +32,7 @@ export default class App extends Component {
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
     };
+
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
     this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
@@ -57,14 +58,12 @@ export default class App extends Component {
 
   checkLoginStatus() {
     return axios
-      .get("https://api.devcamp.space/logged_in", { withCredentials: true })
+      .get("https://api.devcamp.space/logged_in", {
+        withCredentials: true,
+      })
       .then((response) => {
         const loggedIn = response.data.logged_in;
         const loggedInStatus = this.state.loggedInStatus;
-
-        // If loggedIn and status is Logged_IN => return Data
-        // If loggedIn status NOT_LOGGED_IN => update state
-        // If not loggedIn and Status LOGGED_IN => update tate
 
         if (loggedIn && loggedInStatus === "LOGGED_IN") {
           return loggedIn;
@@ -79,7 +78,7 @@ export default class App extends Component {
         }
       })
       .catch((error) => {
-        console.log("error", error);
+        console.log("Error", error);
       });
   }
 
@@ -106,8 +105,10 @@ export default class App extends Component {
               loggedInStatus={this.state.loggedInStatus}
               handleSuccessfulLogout={this.handleSuccessfulLogout}
             />
+
             <Switch>
-              <Route exact path="/" component={Home}></Route>
+              <Route exact path="/" component={Home} />
+
               <Route
                 path="/auth"
                 render={(props) => (
@@ -118,20 +119,19 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route path="/about-me" component={About}></Route>
-              <Route path="/contact-me" component={Contact}></Route>
-              <Route path="/blog" component={Blog}></Route>
-              <Route path="/b/:slug" component={BlogDetail}></Route>
+
+              <Route path="/about-me" component={About} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/blog" component={Blog} />
+              <Route path="/b/:slug" component={BlogDetail} />
               {this.state.loggedInStatus === "LOGGED_IN"
                 ? this.authorizedPages()
                 : null}
-              ;
               <Route
                 exact
                 path="/portfolio/:slug"
                 component={PortfolioDetail}
-              ></Route>
-              {/* A Route Catch all, Goes at the end */}
+              />
               <Route component={NoMatch} />
             </Switch>
           </div>

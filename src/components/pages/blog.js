@@ -75,7 +75,8 @@ class Blog extends Component {
         }
       )
       .then((response) => {
-        console.log("extaposts", response.data);
+        console.log("extaposts", response.data, "FillDataList", response);
+
         this.setState({
           blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
           totalCount: response.data.meta.total_records,
@@ -87,29 +88,30 @@ class Blog extends Component {
 
         // Addition for internet connection Error
         // Start
-        if (error == "Error: Network Error") {
-          console.log("Network Test");
-          this.setState({
-            totalCount: -1,
-            blogItems: [
-              {
-                id: -1,
-                content: "Could not connect to the server",
-                title: "Error: Network Error",
-                data: {
-                  portfolio_blogs: 2,
-                },
-              },
-            ],
-            isLoading: false,
-          });
-          console.log(this.state.totalCount), "totalCount";
-        }
+        // if (error == "Error: Network Error") {
+        //   console.log("Network Test");
+        //   this.setState({
+        //     totalCount: -1,
+        //     blogItems: [
+        //       {
+        //         id: -1,
+        //         content: "Could not connect to the server",
+        //         title: "Error: Network Error",
+        //         data: {
+        //           portfolio_blogs: 2,
+        //         },
+        //       },
+        //     ],
+        //     isLoading: false,
+        //   });
+        //   console.log(this.state.totalCount), "totalCount";
+        // }
         // End
       });
   }
 
   componentWillMount() {
+    console.log("THIS IS A TEST: " + this.state.blogItems);
     this.getBlogItems();
   }
   componentWillUnmount() {
@@ -117,11 +119,11 @@ class Blog extends Component {
   }
 
   render() {
-    console.log(this.state.blogItems);
+    // console.log(this.state.blogItems);
     const blogRecords = this.state.blogItems.map((blogItem) => {
       return <BlogItem key={blogItem.id} blogItem={blogItem} />;
     });
-    console.log(this.state.blogItems);
+    // console.log(this.state.blogItems);
     return (
       <div className="blog-container">
         <BlogModal
@@ -133,7 +135,9 @@ class Blog extends Component {
         ></BlogModal>
 
         <div className="new-blog-link">
-          <a onClick={this.handleNewBlogClick}>OpenModal \^-^/</a>
+          <a onClick={this.handleNewBlogClick}>
+            <FontAwesomeIcon icon="plus-circle" />
+          </a>
         </div>
         <div className="content-container">{blogRecords}</div>
 
