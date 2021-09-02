@@ -111,7 +111,6 @@ class Blog extends Component {
   }
 
   componentWillMount() {
-    console.log("THIS IS A TEST: " + this.state.blogItems);
     this.getBlogItems();
   }
   componentWillUnmount() {
@@ -127,23 +126,22 @@ class Blog extends Component {
     return (
       <div className="blog-container">
         <BlogModal
-          handleModalClose={this.handleModalClose}
-          modalIsOpen={this.state.blogModalIsOpen}
           handleSuccessfulNewBlogSubmission={
             this.handleSuccessfulNewBlogSubmission
           }
-        ></BlogModal>
+          handleModalClose={this.handleModalClose}
+          modalIsOpen={this.state.blogModalIsOpen}
+        />
 
         <div className="new-blog-link">
-          <a onClick={this.handleNewBlogClick}>
-            <FontAwesomeIcon icon="plus-circle" />
-          </a>
+          <a onClick={this.handleNewBlogClick}>Open Modal!</a>
         </div>
+
         <div className="content-container">{blogRecords}</div>
 
         {this.state.isLoading ? (
           <div className="content-loader">
-            <FontAwesomeIcon icon="spinner" spin></FontAwesomeIcon>
+            <FontAwesomeIcon icon="spinner" spin />
           </div>
         ) : null}
       </div>
