@@ -88,29 +88,30 @@ class Blog extends Component {
 
         // Addition for internet connection Error
         // Start
-        // if (error == "Error: Network Error") {
-        //   console.log("Network Test");
-        //   this.setState({
-        //     totalCount: -1,
-        //     blogItems: [
-        //       {
-        //         id: -1,
-        //         content: "Could not connect to the server",
-        //         title: "Error: Network Error",
-        //         data: {
-        //           portfolio_blogs: 2,
-        //         },
-        //       },
-        //     ],
-        //     isLoading: false,
-        //   });
-        //   console.log(this.state.totalCount), "totalCount";
-        // }
+        if (error == "Error: Network Error") {
+          console.log("Network Test");
+          this.setState({
+            totalCount: -1,
+            blogItems: [
+              {
+                id: -1,
+                content: "Could not connect to the server",
+                title: "Error: Network Error",
+                data: {
+                  portfolio_blogs: 2,
+                },
+              },
+            ],
+            isLoading: false,
+          });
+          console.log(this.state.totalCount), "totalCount";
+        }
         // End
       });
   }
 
   componentWillMount() {
+    console.log("THIS IS A TEST: " + this.state.blogItems);
     this.getBlogItems();
   }
   componentWillUnmount() {
@@ -126,22 +127,25 @@ class Blog extends Component {
     return (
       <div className="blog-container">
         <BlogModal
+          handleModalClose={this.handleModalClose}
+          modalIsOpen={this.state.blogModalIsOpen}
           handleSuccessfulNewBlogSubmission={
             this.handleSuccessfulNewBlogSubmission
           }
-          handleModalClose={this.handleModalClose}
-          modalIsOpen={this.state.blogModalIsOpen}
-        />
+        ></BlogModal>
 
-        <div className="new-blog-link">
-          <a onClick={this.handleNewBlogClick}>Open Modal!</a>
-        </div>
-
+        {this.props.loggedInStatus == "LOGGED_IN" ? (
+          <div className="new-blog-link">
+            <a onClick={this.handleNewBlogClick}>
+              <FontAwesomeIcon icon="plus-circle" />
+            </a>
+          </div>
+        ) : null}
         <div className="content-container">{blogRecords}</div>
 
         {this.state.isLoading ? (
           <div className="content-loader">
-            <FontAwesomeIcon icon="spinner" spin />
+            <FontAwesomeIcon icon="spinner" spin></FontAwesomeIcon>
           </div>
         ) : null}
       </div>
