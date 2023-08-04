@@ -3,7 +3,7 @@
   grid-template-columns: 1fr;
 }
 
-.two-columns {
+.two-column {
   @include base-grid();
   grid-template-columns: 1fr 1fr;
 }

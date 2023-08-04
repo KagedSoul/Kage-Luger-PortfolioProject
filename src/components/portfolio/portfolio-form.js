@@ -160,7 +160,7 @@ export default class PortfolioForm extends Component {
         if (this.state.editMode) {
           this.props.handleEditFormSubmission();
         } else {
-          this.props.handleNewfulFormSubmission(response.data.portfolio_item);
+          this.props.handleNewFormFormSubmission(response.data.portfolio_item);
         }
 
         this.setState({
@@ -191,7 +191,7 @@ export default class PortfolioForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="portfolio-form-wrapper">
-        <div className="two-columns">
+        <div className="two-column">
           <input
             type="text"
             name="name"
@@ -209,7 +209,7 @@ export default class PortfolioForm extends Component {
           />
         </div>
 
-        <div className="two-columns">
+        <div className="two-column">
           <input
             type="text"
             name="position"
@@ -225,7 +225,7 @@ export default class PortfolioForm extends Component {
             onChange={this.handleChange}
           >
             <option value="eCommerce">eCommerce</option>
-            <option value="Schedualing">Schedualing</option>
+            <option value="Scheduling">Scheduling</option>
             <option value="Enterprise">Enterprise</option>
           </select>
         </div>
@@ -239,7 +239,7 @@ export default class PortfolioForm extends Component {
           />
         </div>
 
-        <div className="image-uploaders three-columns">
+        <div className="image-uploaders ">
           {this.state.thumb_image_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
               <img src={this.state.thumb_image_url}></img>
@@ -256,7 +256,7 @@ export default class PortfolioForm extends Component {
               djsConfig={this.djsConfig()}
               eventHandlers={this.handleThumbDrop()}
             >
-              <div className="dz-message">Thumbnail Image</div>
+              <div className="dz-message">Thumbnail</div>
             </DropzoneComponent>
           )}
 
