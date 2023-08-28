@@ -55,7 +55,6 @@ export default class PortfolioDetail extends Component {
         this.setState({
           portfolioItem: response.data.portfolio_item,
         });
-        console.log(this.state.portfolioItem);
       })
       .catch((error) => {
         console.log("getportfolioItem error", error);

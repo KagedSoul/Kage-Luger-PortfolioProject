@@ -150,7 +150,6 @@ export default class BlogForm extends Component {
   }
 
   render() {
-    console.log(this.props.blogToEdit);
     return (
       <form onSubmit={this.handleSubmit} className="blog-form-wrapper">
         <div className="two-column">
