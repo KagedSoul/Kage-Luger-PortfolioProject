@@ -1,0 +1,18 @@
+.contact-content {
+  font-family: "American Typewriter", serif;
+  letter-spacing: 0.4px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 1.5em;
+
+  .content {
+    text-align: center;
+  }
+  .contact-info {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+  }
+}

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import BlogItem from "../blog/blog-item";
 import BlogModal from "../modals/blog-modal";
+// import { response } from "express";
 
 class Blog extends Component {
   constructor() {
@@ -26,6 +27,26 @@ class Blog extends Component {
     this.handleSuccessfulNewBlogSubmission = this.handleSuccessfulNewBlogSubmission.bind(
       this
     );
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+  }
+
+  handleDeleteClick(blog) {
+    axios
+      .delete(
+        `https://api.devcamp.space/portfolio/portfolio_blogs/${blog.id}`,
+        { withCredentials: true }
+      )
+      .then((response) => {
+        this.setState({
+          blogItems: this.state.blogItems.filter((blogItem) => {
+            return blog.id !== blogItem.id;
+          }),
+        });
+        return response.data;
+      })
+      .catch((error) => {
+        console.log("servererror delete blog", error);
+      });
   }
 
   handleSuccessfulNewBlogSubmission(blog) {
@@ -75,8 +96,6 @@ class Blog extends Component {
         }
       )
       .then((response) => {
-        console.log("extaposts", response.data, "FillDataList", response);
-
         this.setState({
           blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
           totalCount: response.data.meta.total_records,
@@ -111,7 +130,6 @@ class Blog extends Component {
   }
 
   componentWillMount() {
-    console.log("THIS IS A TEST: " + this.state.blogItems);
     this.getBlogItems();
   }
   componentWillUnmount() {
@@ -119,11 +137,21 @@ class Blog extends Component {
   }
 
   render() {
-    // console.log(this.state.blogItems);
     const blogRecords = this.state.blogItems.map((blogItem) => {
-      return <BlogItem key={blogItem.id} blogItem={blogItem} />;
+      if (this.props.loggedInStatus === "LOGGED_IN") {
+        return (
+          <div key={blogItem.id} className="admin-blog-wrapper">
+            <BlogItem blogItem={blogItem} />
+            <a onClick={() => this.handleDeleteClick(blogItem)}>
+              <FontAwesomeIcon icon={"trash"} />
+            </a>
+          </div>
+        );
+      } else {
+        return <BlogItem key={blogItem.id} blogItem={blogItem} />;
+      }
     });
-    // console.log(this.state.blogItems);
+
     return (
       <div className="blog-container">
         <BlogModal

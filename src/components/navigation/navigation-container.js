@@ -48,7 +48,7 @@ const NavigationComponent = (props) => {
 
         <div className="nav-link-wrapper">
           <NavLink to="/contact-me" activeClassName="active-nav-link">
-            Contact Me
+            Contact
           </NavLink>
         </div>
 
@@ -66,6 +66,7 @@ const NavigationComponent = (props) => {
       <div className="right-side">
         Kage Luger
         {props.loggedInStatus === "LOGGED_IN" ? (
+          // <div kage Luger />
           <a onClick={handleSignOut}>
             <FontAwesomeIcon icon="sign-out-alt"></FontAwesomeIcon>
           </a>

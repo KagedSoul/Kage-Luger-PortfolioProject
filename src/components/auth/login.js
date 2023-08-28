@@ -1,82 +1,93 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import axios from "axios";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 export default class Login extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            email:"",
-            password: "",
-            errorTxt: ""
-        }
+    this.state = {
+      email: "",
+      password: "",
+      errorTxt: "",
+    };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value,
-            errorTxt: ''
-        });
-    }
-    handleSubmit(event) {
-        axios.post("https://api.devcamp.space/sessions",
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+      errorTxt: "",
+    });
+  }
+  handleSubmit(event) {
+    axios
+      .post(
+        "https://api.devcamp.space/sessions",
         {
-            client: {
-                email: this.state.email,
-                password: this.state.password
-            }
+          client: {
+            email: this.state.email,
+            password: this.state.password,
+          },
         },
         { withCredentials: true }
-        ).then(response => {
-            if (response.data.status === 'created') {
-                this.props.handleSuccessfulAuth();
-            } else {
-                this.setState({
-                    errorTxt: "wrong email/pssword"
-                });
-                this.props.handleUnsuccessfulAuth();
-            }
-        }).catch(error => {
-            this.setState({
-                errorTxt: "An Error was Encounter"
-            });
-            this.props.handleUnsuccessfulAuth();
+      )
+      .then((response) => {
+        if (response.data.status === "created") {
+          this.props.handleSuccessfulAuth();
+        } else {
+          this.setState({
+            errorTxt: "wrong email/pssword",
+          });
+          this.props.handleUnsuccessfulAuth();
+        }
+      })
+      .catch((error) => {
+        this.setState({
+          errorTxt: "An Error was Encounter",
         });
+        this.props.handleUnsuccessfulAuth();
+      });
 
-        event.preventDefault();
-    }
+    event.preventDefault();
+  }
 
   render() {
     return (
       <div>
         <h1>LOGIN TO ACCESS YOUR DASHBOARD</h1>
         <div>{this.state.errorTxt}</div>
-        <form onSubmit={this.handleSubmit}>
-        {/* as data is being input, a handeler interperates the data */}
-            <input 
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            />
+        <form onSubmit={this.handleSubmit} className="auth-form-wrapper">
+          {/* as data is being input, a handeler interperates the data */}
 
-            <input 
-                type="password"
-                name="password"
-                placeholder="Your Password"
-                value={this.state.password}
-                onChange={this.handleChange}
+          <div className="form-group">
+            <FontAwesomeIcon icon={faEnvelope} />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={this.state.email}
+              onChange={this.handleChange}
             />
+          </div>
 
-            <div>
-                <button type="submit">Login</button>   
-            </div>    
+          <div className="form-group">
+            <FontAwesomeIcon icon={faLock} />
+            <input
+              type="password"
+              name="password"
+              placeholder="Your Password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <button type="submit" className="btn">
+            Login
+          </button>
         </form>
       </div>
     );

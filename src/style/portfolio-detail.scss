@@ -1,0 +1,60 @@
+.portfolio-detail-wrapper {
+  height: calc(100vh - 83px);
+  font-family: "American Typewriter", serif;
+  letter-spacing: 0.4px;
+  display: grid;
+  align-items: center;
+
+  gap: 30px;
+  font-size: 1.5em;
+
+  grid-template-rows: 1fr 2fr;
+
+  .portfolio-img-background-detail {
+    // height: calc(100vh - 83px);
+    height: 220px;
+    // width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+
+    .logo-img {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 200px;
+    }
+  }
+
+  .lower-row {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    gap: 25px;
+
+    .site-link {
+      text-decoration: none;
+      color: black;
+      padding: 10px;
+      background-color: $teal;
+      border-radius: 3px;
+      transition: 0.5s ease-in-out;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+
+      &:hover {
+        background-color: $dark-teal;
+      }
+    }
+    .thumb-img {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}

@@ -35,6 +35,4 @@ const BlogItem = (props) => {
   );
 };
 
-console.log(BlogItem, "Blog Item jsGenerator");
-
 export default BlogItem;

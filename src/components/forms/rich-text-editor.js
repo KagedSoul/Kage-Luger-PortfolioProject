@@ -18,7 +18,7 @@ export default class RichTextEditor extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.contentToEdit);
+    // console.log(this.props.contentToEdit);
     if (this.props.editMode && this.props.contentToEdit) {
       const blocksFromHtml = htmlToDraft(this.props.contentToEdit);
       const { contentBlocks, entityMap } = blocksFromHtml;
@@ -28,7 +28,6 @@ export default class RichTextEditor extends Component {
       );
       const editorState = EditorState.createWithContent(contentState);
       this.setState({ editorState });
-      console.log(editorState);
     }
   }
 
