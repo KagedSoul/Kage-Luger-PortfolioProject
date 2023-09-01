@@ -1,6 +1,6 @@
 import React from "react";
 
-import profilePicture from "../../../static/assets/images/bio/kage-luger.jpg";
+import profilePicture from "../../../static/assets/images/bio/kage-luger2.jpg";
 
 export default function () {
   return (
